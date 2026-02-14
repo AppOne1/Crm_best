@@ -108,12 +108,13 @@
 
     /* ==================== HEADER ==================== */
     .topbar {
-      height: 70px;
+      height: auto;
+      min-height: 60px;
       background: linear-gradient(145deg, var(--bg-card), #172033);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 8px 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.4);
       position: fixed;
       top: 0;
@@ -121,29 +122,34 @@
       left: 0;
       z-index: 1000;
       border-bottom: 1px solid rgba(212, 180, 106, 0.2);
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .top-left {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 8px;
       flex: 1;
+      min-width: 0;
     }
 
     .app-title {
-      font-size: clamp(14px, 3vw, 18px);
+      font-size: clamp(11px, 2.5vw, 16px);
       font-weight: 800;
       color: var(--primary);
       text-shadow: 0 0 15px rgba(250,204,21,0.5), 0 2px 4px rgba(0,0,0,0.3);
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       white-space: nowrap;
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      padding: 4px 12px;
+      padding: 4px 8px;
       border-radius: 8px;
       position: relative;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .app-title::before {
@@ -157,37 +163,38 @@
     }
 
     .business-display {
-      display: flex;
+      display: none;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
       background: linear-gradient(145deg, rgba(0,0,0,0.3), rgba(0,0,0,0.2));
-      padding: 8px 16px;
-      border-radius: 12px;
+      padding: 6px 12px;
+      border-radius: 10px;
       border: 1px solid rgba(212, 180, 106, 0.2);
       box-shadow: 0 4px 6px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+      font-size: 11px;
     }
 
     .business-display-item {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 12px;
+      gap: 4px;
       color: var(--text-muted);
+      white-space: nowrap;
     }
 
-    .business-display-item strong {
+    .business-display-item span:last-child {
       color: var(--primary);
       font-weight: 600;
-    }
-
-    .business-display-icon {
-      font-size: 14px;
+      max-width: 80px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .top-right {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 6px;
+      flex-shrink: 0;
     }
 
     .datetime-display {
@@ -195,22 +202,22 @@
       flex-direction: column;
       align-items: center;
       background: rgba(255,255,255,0.05);
-      padding: 8px 12px;
-      border-radius: 10px;
+      padding: 6px 8px;
+      border-radius: 8px;
       border: 1px solid rgba(212, 180, 106, 0.2);
-      min-width: 80px;
+      min-width: 65px;
     }
 
     #clock {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 700;
       color: var(--primary);
       font-family: 'Courier New', monospace;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
 
     #date {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-muted);
       margin-top: 2px;
     }
@@ -221,14 +228,14 @@
     }
 
     .btn-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       border: none;
       background: rgba(255,255,255,0.1);
       color: var(--text);
       cursor: pointer;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       transition: all 0.2s;
       display: flex;
@@ -245,14 +252,14 @@
     }
 
     .user-badge {
-      display: flex;
+      display: none;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       background: rgba(34, 197, 94, 0.2);
-      padding: 6px 12px;
-      border-radius: 20px;
+      padding: 4px 8px;
+      border-radius: 12px;
       border: 1px solid var(--success);
-      font-size: 12px;
+      font-size: 11px;
       color: var(--success);
       font-weight: 600;
     }
@@ -261,14 +268,14 @@
     .sidebar {
       width: 220px;
       background: linear-gradient(180deg, var(--bg-card) 0%, #172033 100%);
-      height: calc(100vh - 70px);
+      height: calc(100vh - 60px);
       position: fixed;
       right: 0;
-      top: 70px;
-      padding: 20px 12px;
+      top: 60px;
+      padding: 16px 10px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       box-shadow: -4px 0 20px rgba(0,0,0,0.4);
       border-left: 1px solid rgba(212, 180, 106, 0.1);
       overflow-y: auto;
@@ -278,12 +285,12 @@
 
     .menu-item {
       width: 100%;
-      padding: 14px;
+      padding: 12px 10px;
       background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border-radius: 16px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       cursor: pointer;
       border: 1px solid rgba(255,255,255,0.05);
       transition: all 0.3s;
@@ -305,7 +312,7 @@
 
     .menu-item:hover, .menu-item.active {
       background: linear-gradient(145deg, rgba(250,204,21,0.1), rgba(250,204,21,0.05));
-      transform: translateX(-5px);
+      transform: translateX(-3px);
     }
 
     .menu-item.active::before {
@@ -313,14 +320,15 @@
     }
 
     .menu-icon {
-      font-size: 22px;
-      width: 36px;
-      height: 36px;
+      font-size: 20px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: rgba(0,0,0,0.3);
-      border-radius: 10px;
+      border-radius: 8px;
+      flex-shrink: 0;
     }
 
     .menu-item.active .menu-icon {
@@ -329,10 +337,11 @@
     }
 
     .menu-text {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--text-muted);
       transition: all 0.3s;
+      white-space: nowrap;
     }
 
     .menu-item.active .menu-text {
@@ -343,14 +352,15 @@
     /* ==================== MAIN PANEL ==================== */
     .display-panel {
       margin-right: 220px;
-      margin-top: 70px;
-      padding: 24px;
-      min-height: calc(100vh - 70px);
+      margin-top: 60px;
+      padding: 16px;
+      min-height: calc(100vh - 60px);
       background: var(--bg-dark);
     }
 
     .page {
       animation: fadeIn 0.4s ease;
+      max-width: 100%;
     }
 
     @keyframes fadeIn {
@@ -359,30 +369,31 @@
     }
 
     .page h2 {
-      font-size: 22px;
-      margin-bottom: 24px;
+      font-size: 18px;
+      margin-bottom: 16px;
       color: var(--primary);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-weight: 800;
+      flex-wrap: wrap;
     }
 
     /* ==================== COMPACT STATS ==================== */
     .stats-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
+      gap: 8px;
+      margin-bottom: 16px;
     }
 
     .stat-card {
       background: linear-gradient(145deg, var(--bg-card), #172033);
-      padding: 16px 12px;
-      border-radius: 16px;
+      padding: 12px 8px;
+      border-radius: 12px;
       text-align: center;
       border: 1px solid rgba(255,255,255,0.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 4px 0 rgba(0,0,0,0.2);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3), 0 3px 0 rgba(0,0,0,0.2);
       position: relative;
       overflow: hidden;
       transition: all 0.3s;
@@ -390,8 +401,8 @@
     }
 
     .stat-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 6px 0 rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4), 0 4px 0 rgba(0,0,0,0.2);
     }
 
     .stat-card::after {
@@ -400,20 +411,20 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 3px;
+      height: 2px;
       background: linear-gradient(90deg, var(--primary), var(--primary-dark));
     }
 
     .stat-number {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 800;
       color: var(--primary);
-      margin-bottom: 4px;
-      text-shadow: 0 0 8px rgba(250,204,21,0.3);
+      margin-bottom: 2px;
+      text-shadow: 0 0 6px rgba(250,204,21,0.3);
     }
 
     .stat-label {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-muted);
       font-weight: 500;
     }
@@ -421,20 +432,20 @@
     /* ==================== CARDS ==================== */
     .big-card {
       background: linear-gradient(145deg, var(--bg-card), #172033);
-      padding: 20px;
-      border-radius: 20px;
+      padding: 16px;
+      border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.05);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      margin-bottom: 16px;
     }
 
     .big-card h3 {
       color: var(--primary);
-      font-size: 16px;
-      margin-bottom: 16px;
+      font-size: 14px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-weight: 700;
     }
 
@@ -443,65 +454,66 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin-bottom: 16px;
       flex-wrap: wrap;
     }
 
     .search-box {
       position: relative;
       flex: 1;
-      min-width: 200px;
+      min-width: 150px;
     }
 
     .search-box input {
       width: 100%;
-      padding: 12px 40px 12px 16px;
-      border-radius: 12px;
+      padding: 10px 36px 10px 12px;
+      border-radius: 10px;
       border: none;
       background: var(--bg-card);
       color: var(--text);
-      font-size: 14px;
+      font-size: 13px;
       box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3);
     }
 
     .search-box::after {
       content: '🔍';
       position: absolute;
-      right: 12px;
+      right: 10px;
       top: 50%;
       transform: translateY(-50%);
       opacity: 0.5;
+      font-size: 12px;
     }
 
     /* ==================== BUTTONS ==================== */
     .btn-3d {
       border: none;
-      border-radius: 12px;
-      padding: 12px 20px;
-      font-size: 13px;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 4px 0 rgba(0,0,0,0.3), 0 6px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 3px 0 rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.2);
       transition: all 0.2s;
       position: relative;
       top: 0;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 4px;
       white-space: nowrap;
     }
 
     .btn-3d:active {
-      transform: translateY(4px);
+      transform: translateY(3px);
       box-shadow: 0 0 0 rgba(0,0,0,0.3);
     }
 
     .btn-3d.small {
-      padding: 8px 12px;
+      padding: 6px 10px;
       font-size: 11px;
-      border-radius: 8px;
+      border-radius: 6px;
     }
 
     .btn-3d.wide {
@@ -533,32 +545,28 @@
       color: #fff;
     }
 
-    .btn-3d.warning {
-      background: linear-gradient(135deg, var(--warning), #ea580c);
-      color: #fff;
-    }
-
     /* ==================== TABLES ==================== */
     .table-container {
       overflow-x: auto;
       background: var(--bg-card);
-      padding: 16px;
-      border-radius: 16px;
+      padding: 12px;
+      border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.05);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      -webkit-overflow-scrolling: touch;
     }
 
     .data-table {
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
-      font-size: 13px;
-      min-width: 600px;
+      font-size: 12px;
+      min-width: 500px;
     }
 
     .data-table th {
       background: rgba(0,0,0,0.3);
-      padding: 12px 8px;
+      padding: 10px 6px;
       color: var(--primary);
       font-weight: 700;
       text-align: center;
@@ -566,10 +574,11 @@
       position: sticky;
       top: 0;
       white-space: nowrap;
+      font-size: 11px;
     }
 
     .data-table td {
-      padding: 12px 8px;
+      padding: 10px 6px;
       text-align: center;
       border-bottom: 1px solid rgba(255,255,255,0.05);
       transition: all 0.2s;
@@ -582,32 +591,32 @@
     /* ==================== FORMS ==================== */
     .pretty-box {
       background: linear-gradient(145deg, var(--bg-card), #172033);
-      padding: 20px;
-      border-radius: 20px;
+      padding: 16px;
+      border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.05);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      margin-bottom: 16px;
     }
 
     .pretty-box h3 {
       color: var(--primary);
-      font-size: 15px;
-      margin-bottom: 16px;
+      font-size: 14px;
+      margin-bottom: 12px;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .form-row {
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .form-row label {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       color: var(--text-muted);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
     }
 
@@ -615,12 +624,12 @@
     .form-row select,
     .form-row textarea {
       width: 100%;
-      padding: 12px 14px;
-      border-radius: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
       border: none;
       background: var(--bg-dark);
       color: var(--text);
-      font-size: 14px;
+      font-size: 13px;
       box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3);
       transition: all 0.3s;
     }
@@ -629,7 +638,7 @@
     .form-row select:focus,
     .form-row textarea:focus {
       outline: 2px solid var(--primary-dark);
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
 
     .form-row input.currency-input {
@@ -642,21 +651,22 @@
 
     /* ==================== STATUS ==================== */
     .status-pill {
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 10px;
       font-weight: 700;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
       cursor: pointer;
       transition: all 0.3s;
+      white-space: nowrap;
     }
 
     .status-pill:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
     }
 
     .status-ok {
@@ -690,12 +700,13 @@
 
     /* ==================== PAYMENT TYPES ==================== */
     .pay-pill {
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 9px;
       font-weight: 700;
       color: #fff;
       display: inline-block;
+      white-space: nowrap;
     }
 
     .pay-cash { background: linear-gradient(135deg, #22c55e, #16a34a); }
@@ -704,98 +715,116 @@
     .pay-check { background: linear-gradient(135deg, #f97316, #ea580c); }
     .pay-crypto { background: linear-gradient(135deg, #f59e0b, #d97706); }
 
-    /* ==================== OPERATIONS LAYOUT ==================== */
+    /* ==================== OPERATIONS LAYOUT - FIXED ==================== */
     .operations-layout {
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 20px;
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
     }
 
     .op-form {
+      flex: 0 0 320px;
       position: sticky;
-      top: 90px;
+      top: 76px;
       height: fit-content;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+
+    .op-list {
+      flex: 1;
+      min-width: 0;
     }
 
     /* ==================== MODALS ==================== */
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0,0,0,0.9);
       display: none;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       z-index: 2000;
       backdrop-filter: blur(5px);
-      padding: 20px;
+      padding: 10px;
+      overflow-y: auto;
     }
 
     .modal-content {
       background: linear-gradient(145deg, var(--bg-card), #172033);
-      border-radius: 24px;
+      border-radius: 20px;
       width: 100%;
-      max-width: 900px;
+      max-width: 600px;
       max-height: 90vh;
       overflow-y: auto;
       border: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 25px 50px rgba(0,0,0,0.5);
       animation: modalSlide 0.3s ease;
+      margin: 20px auto;
     }
 
     @keyframes modalSlide {
-      from { opacity: 0; transform: scale(0.9) translateY(20px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     .modal-content.small {
-      max-width: 450px;
+      max-width: 400px;
     }
 
     .modal-content.compact {
-      max-width: 700px;
+      max-width: 500px;
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 24px;
+      padding: 16px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: sticky;
+      top: 0;
+      background: inherit;
+      z-index: 10;
     }
 
     .modal-header h3 {
       color: var(--primary);
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .modal-body {
-      padding: 24px;
+      padding: 16px;
     }
 
     .modal-actions {
       display: flex;
       justify-content: flex-end;
-      gap: 12px;
-      padding: 20px 24px;
+      gap: 8px;
+      padding: 16px;
       border-top: 1px solid rgba(255,255,255,0.1);
+      position: sticky;
+      bottom: 0;
+      background: inherit;
+      flex-wrap: wrap;
     }
 
     /* ==================== CUSTOMER INFO COMPACT ==================== */
     .customer-info-compact {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 8px;
+      margin-bottom: 16px;
     }
 
     .info-item {
       background: rgba(255,255,255,0.05);
-      padding: 12px;
-      border-radius: 12px;
+      padding: 10px;
+      border-radius: 10px;
       border-right: 3px solid var(--primary-dark);
       transition: all 0.3s;
     }
@@ -806,14 +835,14 @@
     }
 
     .info-label {
-      font-size: 10px;
+      font-size: 9px;
       color: var(--primary-dark);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       font-weight: 600;
     }
 
     .info-value {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--text);
       word-break: break-word;
@@ -825,62 +854,65 @@
     /* ==================== STAGES & PAYMENTS ==================== */
     .stage-item, .payment-item {
       background: rgba(255,255,255,0.05);
-      padding: 12px;
-      border-radius: 12px;
-      margin-bottom: 8px;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 6px;
       border-right: 3px solid var(--info);
       display: flex;
       justify-content: space-between;
       align-items: center;
       transition: all 0.3s;
+      gap: 8px;
     }
 
     .stage-item:hover, .payment-item:hover {
       background: rgba(255,255,255,0.08);
-      transform: translateX(-5px);
+      transform: translateX(-3px);
     }
 
     .stage-content, .payment-content {
       flex: 1;
+      min-width: 0;
     }
 
     .stage-text {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
+      word-break: break-word;
     }
 
     .stage-meta {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-muted);
     }
 
     .stage-amount {
       background: var(--primary);
       color: #000;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 10px;
       font-weight: 700;
-      margin-left: 10px;
+      white-space: nowrap;
     }
 
     /* ==================== CURRENCY SELECTOR ==================== */
     .currency-selector {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
+      gap: 6px;
+      margin-top: 10px;
     }
 
     .currency-option {
-      padding: 10px 16px;
-      border-radius: 12px;
+      padding: 8px 12px;
+      border-radius: 10px;
       background: rgba(255,255,255,0.05);
       cursor: pointer;
       transition: all 0.3s;
       border: 2px solid transparent;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
     }
 
@@ -894,9 +926,9 @@
     .activation-box {
       background: linear-gradient(145deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
       border: 1px solid rgba(239, 68, 68, 0.3);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 20px;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
     }
 
     .activation-box.active {
@@ -907,9 +939,10 @@
     .activation-status {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
+      gap: 8px;
+      margin-bottom: 10px;
       font-weight: 700;
+      font-size: 14px;
     }
 
     .activation-status.inactive { color: var(--danger); }
@@ -917,16 +950,16 @@
 
     .license-info {
       background: rgba(0,0,0,0.2);
-      padding: 12px;
-      border-radius: 10px;
-      margin: 12px 0;
-      font-size: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 11px;
     }
 
     .license-info div {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .license-info div:last-child { margin-bottom: 0; }
@@ -934,53 +967,24 @@
     /* ==================== ACTIVITIES ==================== */
     .activity-list {
       list-style: none;
-      max-height: 300px;
+      max-height: 250px;
       overflow-y: auto;
     }
 
     .activity-list li {
-      padding: 12px;
-      margin-bottom: 8px;
+      padding: 10px;
+      margin-bottom: 6px;
       background: rgba(255,255,255,0.03);
-      border-radius: 12px;
+      border-radius: 10px;
       border-right: 3px solid var(--primary-dark);
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-muted);
       transition: all 0.3s;
     }
 
     .activity-list li:hover {
       background: rgba(255,255,255,0.06);
-      transform: translateX(-5px);
-    }
-
-    /* ==================== TOOLTIP ==================== */
-    .tooltip {
-      position: relative;
-    }
-
-    .tooltip::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.9);
-      color: #fff;
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 11px;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s;
-      margin-bottom: 8px;
-      z-index: 1000;
-    }
-
-    .tooltip:hover::after {
-      opacity: 1;
-      transform: translateX(-50%) translateY(-5px);
+      transform: translateX(-3px);
     }
 
     /* ==================== DEBTORS COMPACT ==================== */
@@ -988,49 +992,63 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 16px;
+      padding: 10px 12px;
       background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      margin-bottom: 8px;
+      border-radius: 10px;
+      margin-bottom: 6px;
       border-right: 3px solid var(--danger);
       transition: all 0.3s;
+      gap: 8px;
     }
 
     .debtor-item:hover {
       background: rgba(255,255,255,0.06);
-      transform: translateX(-5px);
+      transform: translateX(-3px);
     }
 
     .debtor-name {
       font-weight: 600;
       color: var(--text);
+      font-size: 13px;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .debtor-amount {
       color: var(--danger);
       font-weight: 700;
-      font-size: 13px;
+      font-size: 12px;
+      white-space: nowrap;
     }
 
     /* ==================== MOBILE RESPONSIVE ==================== */
     @media (max-width: 1024px) {
       .operations-layout {
-        grid-template-columns: 1fr;
-      }
-      .op-form {
-        position: static;
+        flex-direction: column !important;
       }
       
-      .stats-row {
-        grid-template-columns: repeat(2, 1fr);
+      .op-form {
+        flex: 1 !important;
+        position: static !important;
+        max-height: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      
+      .op-list {
+        width: 100% !important;
       }
     }
 
     @media (max-width: 768px) {
       .sidebar {
         transform: translateX(100%);
-        width: 280px;
+        width: 260px;
         z-index: 1500;
+        top: 60px;
+        height: calc(100vh - 60px);
       }
       
       .sidebar.open {
@@ -1039,15 +1057,33 @@
       
       .display-panel {
         margin-right: 0;
-        padding: 16px;
+        padding: 12px;
+        margin-top: 60px;
       }
       
       .menu-toggle {
         display: flex !important;
       }
       
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+      }
+      
+      .stat-card {
+        padding: 10px 6px;
+      }
+      
+      .stat-number {
+        font-size: 14px;
+      }
+      
+      .stat-label {
+        font-size: 9px;
+      }
+      
       .customer-info-compact {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
       }
       
       .modal-two-cols {
@@ -1055,58 +1091,117 @@
       }
       
       .business-display {
+        display: none !important;
+      }
+      
+      .user-badge {
         display: none;
       }
-    }
-
-    @media (max-width: 480px) {
+      
       .topbar {
-        padding: 0 12px;
-        height: 60px;
+        padding: 6px 10px;
       }
       
       .app-title {
+        font-size: 11px;
+        padding: 3px 6px;
+      }
+      
+      .datetime-display {
+        padding: 4px 6px;
+        min-width: 55px;
+      }
+      
+      #clock {
         font-size: 12px;
       }
       
-      .stats-row {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+      #date {
+        font-size: 9px;
       }
       
-      .stat-card {
-        padding: 12px 8px;
-      }
-      
-      .stat-number {
-        font-size: 16px;
+      .btn-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
       }
       
       .page h2 {
         font-size: 16px;
+        margin-bottom: 12px;
       }
       
-      .btn-3d {
-        padding: 10px 14px;
-        font-size: 12px;
+      .big-card {
+        padding: 12px;
       }
       
       .table-container {
-        padding: 12px;
+        padding: 10px;
         overflow-x: scroll;
       }
       
       .data-table {
         font-size: 11px;
+        min-width: 400px;
       }
       
       .data-table th, .data-table td {
         padding: 8px 4px;
       }
       
+      .btn-3d {
+        padding: 8px 12px;
+        font-size: 11px;
+      }
+      
+      .btn-3d.small {
+        padding: 5px 8px;
+        font-size: 10px;
+      }
+      
       .modal-content {
         margin: 10px;
         max-height: 95vh;
+        border-radius: 16px;
+      }
+      
+      .modal-header, .modal-body, .modal-actions {
+        padding: 12px;
+      }
+      
+      .form-row input,
+      .form-row select,
+      .form-row textarea {
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .customer-info-compact {
+        grid-template-columns: 1fr;
+      }
+      
+      .debtor-item {
+        flex-wrap: wrap;
+      }
+      
+      .debtor-name {
+        width: 100%;
+        margin-bottom: 4px;
+      }
+      
+      .modal-actions {
+        justify-content: center;
+      }
+      
+      .modal-actions .btn-3d {
+        flex: 1;
+        min-width: 80px;
       }
     }
 
@@ -1116,13 +1211,13 @@
       position: fixed;
       bottom: 20px;
       left: 20px;
-      width: 56px;
-      height: 56px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: #000;
       border: none;
-      font-size: 24px;
+      font-size: 20px;
       cursor: pointer;
       box-shadow: 0 6px 20px rgba(250,204,21,0.4);
       z-index: 1600;
@@ -1140,8 +1235,9 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.8);
       z-index: 1400;
+      backdrop-filter: blur(3px);
     }
 
     .sidebar-overlay.show {
@@ -1150,8 +1246,8 @@
 
     /* ==================== SCROLLBAR ==================== */
     ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 4px;
+      height: 4px;
     }
 
     ::-webkit-scrollbar-track {
@@ -1160,7 +1256,7 @@
 
     ::-webkit-scrollbar-thumb {
       background: #334155;
-      border-radius: 3px;
+      border-radius: 2px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
@@ -1197,9 +1293,9 @@
     /* ==================== LOADING ==================== */
     .loading {
       display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255,255,255,0.1);
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.1);
       border-radius: 50%;
       border-top-color: var(--primary);
       animation: spin 1s ease-in-out infinite;
@@ -1257,18 +1353,14 @@
     <header class="topbar">
       <div class="top-left">
         <div class="app-title" id="app-title">بهترین نرم افزار مالی و CRM</div>
-        <div class="business-display" id="business-display" style="display: none;">
+        <div class="business-display" id="business-display">
           <div class="business-display-item">
-            <span class="business-display-icon">🏢</span>
+            <span>🏢</span>
             <span id="display-biz-name">-</span>
           </div>
           <div class="business-display-item">
-            <span class="business-display-icon">📞</span>
+            <span>📞</span>
             <span id="display-biz-phone">-</span>
-          </div>
-          <div class="business-display-item">
-            <span class="business-display-icon">📍</span>
-            <span id="display-biz-address">-</span>
           </div>
         </div>
       </div>
@@ -1280,8 +1372,8 @@
         </div>
         
         <div class="lang-switch">
-          <button class="btn-icon tooltip" data-tooltip="فارسی" onclick="setLang('fa')">FA</button>
-          <button class="btn-icon tooltip" data-tooltip="English" onclick="setLang('en')">EN</button>
+          <button class="btn-icon" onclick="setLang('fa')">FA</button>
+          <button class="btn-icon" onclick="setLang('en')">EN</button>
         </div>
         
         <div class="user-badge" id="user-badge">
@@ -1289,33 +1381,33 @@
           <span id="username-display">کاربر</span>
         </div>
         
-        <button class="btn-icon tooltip" data-tooltip="خروج" onclick="logout()" title="خروج">🚪</button>
+        <button class="btn-icon" onclick="logout()" title="خروج">🚪</button>
       </div>
     </header>
 
     <nav class="sidebar" id="sidebar">
       <div class="menu-item active" data-page="dashboard" onclick="showPage('dashboard')">
-        <div class="menu-icon tooltip" data-tooltip="داشبورد">📊</div>
+        <div class="menu-icon">📊</div>
         <div class="menu-text" data-key="menu_dashboard">داشبورد</div>
       </div>
       <div class="menu-item" data-page="customers" onclick="showPage('customers')">
-        <div class="menu-icon tooltip" data-tooltip="مشتری‌ها">👥</div>
+        <div class="menu-icon">👥</div>
         <div class="menu-text" data-key="menu_customers">مشتری‌ها</div>
       </div>
       <div class="menu-item" data-page="operations" onclick="showPage('operations')">
-        <div class="menu-icon tooltip" data-tooltip="عملیات">⚙️</div>
+        <div class="menu-icon">⚙️</div>
         <div class="menu-text" data-key="menu_operations">عملیات</div>
       </div>
       <div class="menu-item" data-page="finance" onclick="showPage('finance')">
-        <div class="menu-icon tooltip" data-tooltip="حسابداری">💰</div>
+        <div class="menu-icon">💰</div>
         <div class="menu-text" data-key="menu_finance">حسابداری</div>
       </div>
       <div class="menu-item" data-page="archive" onclick="showPage('archive')">
-        <div class="menu-icon tooltip" data-tooltip="بایگانی">📦</div>
+        <div class="menu-icon">📦</div>
         <div class="menu-text" data-key="menu_archive">بایگانی</div>
       </div>
       <div class="menu-item" data-page="settings" onclick="showPage('settings')">
-        <div class="menu-icon tooltip" data-tooltip="تنظیمات">⚙️</div>
+        <div class="menu-icon">⚙️</div>
         <div class="menu-text" data-key="menu_settings">تنظیمات</div>
       </div>
     </nav>
@@ -1528,7 +1620,7 @@
             <span>🔒</span>
             <span data-key="activation_locked">نرم‌افزار غیرفعال</span>
           </div>
-          <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 12px;" data-key="activation_desc">
+          <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 10px;" data-key="activation_desc">
             پس از ۱۰ عملیات خدمت، برای ادامه نیاز به کد فعال‌سازی دارید.
           </p>
           <div class="license-info" id="license-info" style="display:none;">
@@ -1542,8 +1634,8 @@
             </div>
           </div>
           <button class="btn-3d primary" onclick="showActivationModal()" data-key="btn_activate">🔑 فعال‌سازی</button>
-          <p style="color: var(--text-muted); font-size: 11px; margin-top: 10px;">
-            <span data-key="activation_contact">برای دریافت کد، به ایمیل زیر پیام دهید:</span><br>
+          <p style="color: var(--text-muted); font-size: 10px; margin-top: 8px;">
+            <span data-key="activation_contact">برای دریافت کد:</span>
             <strong style="color: var(--primary);">alavipoco@gmail.com</strong>
           </p>
         </div>
@@ -1562,7 +1654,7 @@
             <label data-key="lbl_biz_address">آدرس:</label>
             <textarea id="settings-biz-address" rows="2" placeholder="آدرس کامل..."></textarea>
           </div>
-          <button class="btn-3d primary" onclick="saveBusinessInfo()" data-key="btn_save_business">💾 ذخیره اطلاعات</button>
+          <button class="btn-3d primary" onclick="saveBusinessInfo()" data-key="btn_save_business">💾 ذخیره</button>
         </div>
 
         <div class="pretty-box">
@@ -1581,14 +1673,14 @@
 
         <div class="pretty-box">
           <h3>🌐 اتصال به پایگاه داده</h3>
-          <p style="color:var(--text-muted); font-size:12px; margin-bottom:12px;" data-key="db_desc">
-            برای اتصال به MySQL/PostgreSQL/MongoDB تنظیمات را وارد کنید:
+          <p style="color:var(--text-muted); font-size:11px; margin-bottom:10px;" data-key="db_desc">
+            برای اتصال به MySQL/PostgreSQL/MongoDB:
           </p>
           <div class="form-row">
-            <input type="text" id="db-host" placeholder="هاست (مثال: localhost)">
+            <input type="text" id="db-host" placeholder="هاست (localhost)">
           </div>
           <div class="form-row">
-            <input type="text" id="db-port" placeholder="پورت (مثال: 3306)">
+            <input type="text" id="db-port" placeholder="پورت (3306)">
           </div>
           <div class="form-row">
             <input type="text" id="db-name" placeholder="نام دیتابیس">
@@ -1599,19 +1691,16 @@
           <div class="form-row">
             <input type="password" id="db-pass" placeholder="رمز عبور">
           </div>
-          <div class="form-row">
-            <input type="text" id="db-api" placeholder="API Endpoint (اختیاری)">
-          </div>
-          <button class="btn-3d success" onclick="saveDBConfig()" data-key="btn_save_db">💾 ذخیره تنظیمات DB</button>
-          <button class="btn-3d info" onclick="testDBConnection()" style="margin-right:10px;" data-key="btn_test_db">🔗 تست اتصال</button>
+          <button class="btn-3d success" onclick="saveDBConfig()" data-key="btn_save_db">💾 ذخیره</button>
+          <button class="btn-3d info" onclick="testDBConnection()" style="margin-right:8px;" data-key="btn_test_db">🔗 تست</button>
         </div>
 
         <div class="pretty-box">
           <h3 data-key="settings_user_mgmt">👥 مدیریت کاربران</h3>
-          <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 12px;" data-key="user_mgmt_desc">
-            کاربران سیستم را مدیریت کنید. توجه: فقط ادمین می‌تواند کاربر جدید تعریف کند.
+          <p style="color: var(--text-muted); font-size: 11px; margin-bottom: 10px;" data-key="user_mgmt_desc">
+            فقط ادمین می‌تواند کاربر جدید تعریف کند.
           </p>
-          <div id="user-list" style="margin-bottom: 12px; max-height: 200px; overflow-y: auto;">
+          <div id="user-list" style="margin-bottom: 10px; max-height: 150px; overflow-y: auto;">
           </div>
           <button class="btn-3d primary" onclick="showAddUserModal()" data-key="btn_add_user">+ افزودن کاربر</button>
         </div>
@@ -1620,35 +1709,32 @@
           <h3 data-key="settings_backup">💾 پشتیبان</h3>
           <button class="btn-3d success" onclick="exportData()" data-key="btn_export">📥 Export</button>
           <div class="mt-2">
-            <input type="file" id="import-file" accept=".json" style="margin-bottom:10px;">
+            <input type="file" id="import-file" accept=".json" style="margin-bottom:8px; font-size:12px;">
             <button class="btn-3d danger" onclick="importData()" data-key="btn_import">📤 Import</button>
           </div>
         </div>
 
         <div class="pretty-box">
           <h3 data-key="settings_reset">🗑️ پاک کردن همه</h3>
-          <p style="color: var(--danger); font-size:12px;" data-key="reset_warning">هشدار: غیرقابل بازگشت!</p>
+          <p style="color: var(--danger); font-size:11px;" data-key="reset_warning">هشدار: غیرقابل بازگشت!</p>
           <button class="btn-3d danger" onclick="resetAllData()" data-key="btn_reset">پاک کردن</button>
         </div>
       </div>
 
     </main>
   </div>
-
+    <!-- Modals -->
   <div id="customer-modal" class="modal">
     <div class="modal-content compact">
       <div class="modal-header">
         <h3 id="modal-title">👤 پروفایل</h3>
         <button class="btn-3d small secondary" onclick="closeCustomerModal()">✕</button>
       </div>
-      
       <div class="modal-body">
-        <div class="customer-info-compact" id="customer-info">
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;" class="modal-two-cols">
-          <div class="pretty-box" style="margin:0;">
-            <h3>💵 پرداخت جدید</h3>
+        <div class="customer-info-compact" id="customer-info"></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="modal-two-cols">
+          <div class="pretty-box" style="margin:0; padding:12px;">
+            <h3 style="font-size:13px;">💵 پرداخت جدید</h3>
             <div class="form-row">
               <select id="pay-type">
                 <option value="نقدی">💵 نقدی</option>
@@ -1661,40 +1747,27 @@
             <div class="form-row">
               <input type="text" id="pay-amount" class="currency-input" placeholder="مبلغ" oninput="formatCurrencyInput(this)">
             </div>
-            <div class="form-row">
-              <select id="pay-for-stage">
-                <option value="">-- انتخاب مرحله --</option>
-              </select>
-            </div>
             <button class="btn-3d success wide" onclick="addPayment()">ثبت</button>
-
-            <div style="margin-top:16px; max-height:150px; overflow-y:auto;">
-              <h4 style="color:var(--primary); font-size:12px; margin-bottom:8px;">📋 تاریخچه پرداخت‌ها</h4>
+            <div style="margin-top:12px; max-height:120px; overflow-y:auto;">
+              <h4 style="color:var(--primary); font-size:11px; margin-bottom:6px;">📋 تاریخچه</h4>
               <div id="payments-list"></div>
             </div>
           </div>
-
-          <div class="pretty-box" style="margin:0;">
-            <h3>📋 مراحل کار</h3>
+          <div class="pretty-box" style="margin:0; padding:12px;">
+            <h3 style="font-size:13px;">📋 مراحل کار</h3>
             <div class="form-row">
               <input type="text" id="stage-title" placeholder="عنوان مرحله">
             </div>
             <div class="form-row">
-              <input type="text" id="stage-amount" class="currency-input" placeholder="مبلغ این مرحله (اختیاری)" oninput="formatCurrencyInput(this)">
-            </div>
-            <div class="form-row">
-              <textarea id="stage-desc" rows="2" placeholder="توضیحات"></textarea>
+              <input type="text" id="stage-amount" class="currency-input" placeholder="مبلغ (اختیاری)" oninput="formatCurrencyInput(this)">
             </div>
             <button class="btn-3d primary wide" onclick="addStage()">افزودن</button>
-
-            <div style="margin-top:16px; max-height:200px; overflow-y:auto;" id="stages-list">
-            </div>
+            <div style="margin-top:12px; max-height:150px; overflow-y:auto;" id="stages-list"></div>
           </div>
         </div>
       </div>
-
       <div class="modal-actions">
-        <button class="btn-3d secondary" onclick="showCustomerStagesModal()">📋 مشاهده همه مراحل</button>
+        <button class="btn-3d secondary" onclick="showCustomerStagesModal()">📋 همه مراحل</button>
         <button class="btn-3d secondary" onclick="printProfile()">🖨️ پرینت</button>
         <button class="btn-3d danger" onclick="closeCustomerModal()">بستن</button>
       </div>
@@ -1704,12 +1777,11 @@
   <div id="stages-modal" class="modal">
     <div class="modal-content compact">
       <div class="modal-header">
-        <h3>📋 مراحل کار مشتری</h3>
+        <h3>📋 مراحل کار</h3>
         <button class="btn-3d small secondary" onclick="closeStagesModal()">✕</button>
       </div>
       <div class="modal-body">
-        <div id="stages-modal-content" style="max-height: 400px; overflow-y: auto;">
-        </div>
+        <div id="stages-modal-content" style="max-height: 350px; overflow-y: auto;"></div>
       </div>
       <div class="modal-actions">
         <button class="btn-3d secondary" onclick="closeStagesModal()">بستن</button>
@@ -1723,8 +1795,7 @@
         <h3>💵 جزییات مالی</h3>
         <button class="btn-3d small secondary" onclick="closeFinanceModal()">✕</button>
       </div>
-      <div class="modal-body" id="finance-modal-content">
-      </div>
+      <div class="modal-body" id="finance-modal-content"></div>
       <div class="modal-actions">
         <button class="btn-3d secondary" onclick="closeFinanceModal()">بستن</button>
       </div>
@@ -1734,11 +1805,11 @@
   <div id="activation-modal" class="modal">
     <div class="modal-content small">
       <div class="modal-header">
-        <h3>🔑 فعال‌سازی نرم‌افزار</h3>
+        <h3>🔑 فعال‌سازی</h3>
       </div>
       <div class="modal-body">
-        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
-          لایسنس مورد نظر خود را انتخاب کنید:
+        <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 12px;">
+          لایسنس را انتخاب کنید:
         </p>
         <div class="form-row">
           <select id="license-type-select">
@@ -1749,13 +1820,7 @@
           </select>
         </div>
         <div class="form-row">
-          <input type="text" id="activation-code" placeholder="کد فعال‌سازی را وارد کنید">
-        </div>
-        <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-bottom: 16px;">
-          <div style="display: flex; justify-content: space-between;">
-            <span style="color: var(--text-muted);">مدت:</span>
-            <strong id="license-duration" style="color: var(--success);">۳۰ روز</strong>
-          </div>
+          <input type="text" id="activation-code" placeholder="کد فعال‌سازی">
         </div>
       </div>
       <div class="modal-actions">
@@ -1768,7 +1833,7 @@
   <div id="add-user-modal" class="modal">
     <div class="modal-content small">
       <div class="modal-header">
-        <h3>👤 افزودن کاربر جدید</h3>
+        <h3>👤 کاربر جدید</h3>
       </div>
       <div class="modal-body">
         <div class="form-row">
@@ -1780,13 +1845,13 @@
           <input type="email" id="new-user-email" placeholder="email@example.com">
         </div>
         <div class="form-row">
-          <label>رمز عبور:</label>
+          <label>رمز:</label>
           <input type="password" id="new-user-password" placeholder="********">
         </div>
         <div class="form-row">
           <label>نقش:</label>
           <select id="new-user-role">
-            <option value="user">کاربر عادی</option>
+            <option value="user">کاربر</option>
             <option value="admin">ادمین</option>
           </select>
         </div>
@@ -1801,7 +1866,7 @@
   <div id="edit-modal" class="modal">
     <div class="modal-content small">
       <div class="modal-header">
-        <h3>✏️ ویرایش مشتری</h3>
+        <h3>✏️ ویرایش</h3>
       </div>
       <div class="modal-body">
         <input type="hidden" id="edit-id">
@@ -1821,10 +1886,6 @@
           <label>آدرس:</label>
           <textarea id="edit-address" rows="2"></textarea>
         </div>
-        <div class="form-row">
-          <label>یادداشت:</label>
-          <textarea id="edit-note" rows="2"></textarea>
-        </div>
       </div>
       <div class="modal-actions">
         <button class="btn-3d primary" onclick="saveEdit()">ذخیره</button>
@@ -1839,15 +1900,13 @@
         <h3>📦 جزییات بایگانی</h3>
         <button class="btn-3d small secondary" onclick="closeArchiveDetailModal()">✕</button>
       </div>
-      <div class="modal-body" id="archive-detail-content">
-      </div>
+      <div class="modal-body" id="archive-detail-content"></div>
       <div class="modal-actions">
         <button class="btn-3d secondary" onclick="closeArchiveDetailModal()">بستن</button>
       </div>
     </div>
   </div>
-
-  <script>
+    <script>
     // ==================== CONFIG & STATE ====================
     const APP_VERSION = '2.0.0';
     const TRIAL_LIMIT = 10;
@@ -1868,12 +1927,13 @@
     let db = null;
     let currentCustomerId = null;
 
+    // ==================== CURRENCIES CONFIG ====================
     const CURRENCIES = {
-      IRR: { symbol: 'تومان', locale: 'fa-IR', decimals: 0 },
-      USD: { symbol: '$', locale: 'en-US', decimals: 2 },
-      EUR: { symbol: '€', locale: 'de-DE', decimals: 2 },
-      GBP: { symbol: '£', locale: 'en-GB', decimals: 2 },
-      BTC: { symbol: '₿', locale: 'en-US', decimals: 8 }
+      IRR: { symbol: 'تومان', locale: 'fa-IR', decimals: 0, faName: 'تومان', enName: 'Toman' },
+      USD: { symbol: '$', locale: 'en-US', decimals: 2, faName: 'دلار', enName: 'USD' },
+      EUR: { symbol: '€', locale: 'de-DE', decimals: 2, faName: 'یورو', enName: 'EUR' },
+      GBP: { symbol: '£', locale: 'en-GB', decimals: 2, faName: 'پوند', enName: 'GBP' },
+      BTC: { symbol: '₿', locale: 'en-US', decimals: 8, faName: 'بیتکوین', enName: 'BTC' }
     };
 
     const LICENSE_CODES = {
@@ -1959,135 +2019,14 @@
       });
     }
 
-    // ==================== ACTIVATION SYSTEM ====================
-    function checkActivation() {
-      const opCount = operations.length;
-      const isActive = isLicenseValid();
-      
-      updateActivationUI(isActive, opCount);
-      
-      if (opCount >= TRIAL_LIMIT && !isActive) {
-        showActivationModal();
-        return false;
-      }
-      return true;
-    }
-
-    function isLicenseValid() {
-      if (!licenseData) return false;
-      if (licenseData.expireDate) {
-        return new Date() < new Date(licenseData.expireDate);
-      }
-      return false;
-    }
-
-    function updateActivationUI(isActive, opCount) {
-      const box = document.getElementById('activation-box');
-      const statusText = document.getElementById('activation-status-text');
-      const licenseInfo = document.getElementById('license-info');
-      
-      if (isActive && licenseData) {
-        box.classList.add('active');
-        statusText.className = 'activation-status active';
-        statusText.innerHTML = '<span>🔓</span><span>نرم‌افزار فعال است</span>';
-        licenseInfo.style.display = 'block';
-        
-        document.getElementById('license-type').textContent = licenseData.name || licenseData.type;
-        document.getElementById('license-expire').textContent = new Date(licenseData.expireDate).toLocaleDateString('fa-IR');
-      } else {
-        box.classList.remove('active');
-        statusText.className = 'activation-status inactive';
-        statusText.innerHTML = '<span>🔒</span><span>نرم‌افزار غیرفعال</span>';
-        licenseInfo.style.display = 'none';
-        
-        if (opCount >= TRIAL_LIMIT) {
-          alert('⚠️ پایان نسخه آزمایشی! لطفاً نرم‌افزار را فعال کنید.');
-          showActivationModal();
-        }
-      }
-    }
-
-    function showActivationModal() {
-      document.getElementById('activation-modal').style.display = 'flex';
-    }
-
-    function closeActivationModal() {
-      document.getElementById('activation-modal').style.display = 'none';
-    }
-
-    function activateWithCode() {
-      const code = document.getElementById('activation-code').value.trim().toUpperCase();
-      
-      if (!code) {
-        alert('لطفاً کد فعال‌سازی را وارد کنید');
-        return;
-      }
-      
-      const licenseInfo = LICENSE_CODES[code];
-      
-      if (licenseInfo) {
-        const expireDate = new Date();
-        expireDate.setDate(expireDate.getDate() + licenseInfo.days);
-        
-        licenseData = {
-          code: code,
-          type: licenseInfo.type,
-          name: licenseInfo.name,
-          expireDate: expireDate.toISOString(),
-          activatedAt: new Date().toISOString()
-        };
-        
-        localStorage.setItem('crm_license', JSON.stringify(licenseData));
-        updateActivationUI(true, operations.length);
-        closeActivationModal();
-        alert('✅ نرم‌افزار با موفقیت فعال شد!');
-        addActivity('نرم‌افزار فعال شد - ' + licenseInfo.name);
-      } else {
-        alert('❌ کد فعال‌سازی نامعتبر است!');
-      }
-    }
-
-    // ==================== BUSINESS INFO ====================
-    function updateBusinessDisplay() {
-      const display = document.getElementById('business-display');
-      const nameEl = document.getElementById('display-biz-name');
-      const phoneEl = document.getElementById('display-biz-phone');
-      const addressEl = document.getElementById('display-biz-address');
-      
-      if (businessInfo.name || businessInfo.phone || businessInfo.address) {
-        display.style.display = 'flex';
-        nameEl.textContent = businessInfo.name || '-';
-        phoneEl.textContent = businessInfo.phone || '-';
-        addressEl.textContent = businessInfo.address || '-';
-      } else {
-        display.style.display = 'none';
-      }
-      
-      // Load in settings
-      document.getElementById('settings-biz-name').value = businessInfo.name || '';
-      document.getElementById('settings-biz-phone').value = businessInfo.phone || '';
-      document.getElementById('settings-biz-address').value = businessInfo.address || '';
-    }
-
-    function saveBusinessInfo() {
-      businessInfo = {
-        name: document.getElementById('settings-biz-name').value.trim(),
-        phone: document.getElementById('settings-biz-phone').value.trim(),
-        address: document.getElementById('settings-biz-address').value.trim()
-      };
-      localStorage.setItem('crm_business_info', JSON.stringify(businessInfo));
-      updateBusinessDisplay();
-      addActivity('اطلاعات کسب‌وکار بروزرسانی شد');
-      alert('✅ اطلاعات ذخیره شد');
-    }
-
-    // ==================== CURRENCY FORMATTING ====================
+    // ==================== CURRENCY FORMATTING - FIXED ====================
     function formatNumber(num, showSymbol = true) {
-      const curr = CURRENCIES[currentCurrency];
+      const curr = CURRENCIES[currentCurrency] || CURRENCIES['IRR'];
       const n = Number(num) || 0;
       
       let formatted;
       if (currentLang === 'fa') {
+        // فرمت فارسی با ویرگول
         const parts = n.toFixed(curr.decimals).split('.');
         const integerPart = parts[0];
         const decimalPart = parts[1] || '';
@@ -2109,7 +2048,8 @@
           return char;
         }).join('');
         
-        if (decimalPart && curr.decimals > 0) {
+        // فقط اگر اعشار داشته باشیم و صفر نباشد
+        if (decimalPart && curr.decimals > 0 && parseInt(decimalPart) > 0) {
           const persianDecimal = decimalPart.split('').map(char => 
             char >= '0' && char <= '9' ? persianDigits[parseInt(char)] : char
           ).join('');
@@ -2118,22 +2058,47 @@
           formatted = persianInteger;
         }
       } else {
+        // فرمت انگلیسی
         formatted = n.toLocaleString('en-US', {
           minimumFractionDigits: curr.decimals,
           maximumFractionDigits: curr.decimals
         });
       }
       
-      return showSymbol ? `${formatted} ${curr.symbol}` : formatted;
+      // نمایش واحد پول
+      if (showSymbol) {
+        if (currentLang === 'fa') {
+          // در فارسی: عدد + فاصله + نام فارسی واحد
+          return `${formatted} ${curr.faName}`;
+        } else {
+          // در انگلیسی: نماد + عدد (به جز تومان)
+          if (currentCurrency === 'IRR') {
+            return `${formatted} ${curr.enName}`;
+          } else {
+            return `${curr.symbol}${formatted}`;
+          }
+        }
+      }
+      
+      return formatted;
     }
 
     function parseNumber(str) {
-      if (!str) return 0;
+      if (!str || str === '') return 0;
+      if (typeof str === 'number') return str;
       
-      let clean = str.toString()
-        .replace(/[تومان$€£₿]/g, '')
-        .replace(/\s/g, '');
+      let clean = str.toString();
       
+      // حذف نام فارسی واحدها
+      Object.values(CURRENCIES).forEach(c => {
+        clean = clean.replace(new RegExp(c.faName, 'g'), '');
+      });
+      
+      // حذف نمادها
+      clean = clean.replace(/[$€£₿]/g, '');
+      clean = clean.trim();
+      
+      // تبدیل فارسی/عربی به انگلیسی
       const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
       const arabicDigits = '٠١٢٣٤٥٦٧٨٩';
       
@@ -2145,60 +2110,39 @@
         return char;
       }).join('');
       
+      // حذف کاما و ویرگول
       clean = clean.replace(/,/g, '').replace(/،/g, '');
+      
+      // تبدیل اسلش به نقطه (برای اعشار فارسی)
       clean = clean.replace(/\//g, '.');
+      
+      // اگر چند نقطه داشت
+      const parts = clean.split('.');
+      if (parts.length > 2) {
+        clean = parts[0] + '.' + parts[1];
+      }
       
       const result = parseFloat(clean);
       return isNaN(result) ? 0 : result;
     }
 
     function formatCurrencyInput(input) {
-      let rawValue = input.value;
+      if (!input.value) return;
       
-      const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
-      const arabicDigits = '٠١٢٣٤٥٦٧٨٩';
+      const curr = CURRENCIES[currentCurrency] || CURRENCIES['IRR'];
       
-      let clean = rawValue.split('').map(char => {
-        const pIndex = persianDigits.indexOf(char);
-        if (pIndex > -1) return pIndex.toString();
-        const aIndex = arabicDigits.indexOf(char);
-        if (aIndex > -1) return aIndex.toString();
-        return char;
-      }).join('');
+      // تبدیل به عدد خام
+      let num = parseNumber(input.value);
+      if (isNaN(num)) num = 0;
       
-      clean = clean.replace(/[^0-9.]/g, '');
-      
-      const parts = clean.split('.');
-      if (parts.length > 2) {
-        clean = parts[0] + '.' + parts.slice(1).join('');
-      }
-      
-      const curr = CURRENCIES[currentCurrency];
-      if (parts[1] && parts[1].length > curr.decimals) {
-        clean = parts[0] + '.' + parts[1].substring(0, curr.decimals);
-      }
-      
-      let num = parseFloat(clean) || 0;
-      
-      if (clean.replace('.', '').length > 15) {
-        const digits = clean.replace('.', '');
-        const truncated = digits.substring(0, 15);
-        if (parts[1]) {
-          const intLength = parts[0].length;
-          const newDecimal = truncated.substring(intLength, 15);
-          clean = parts[0].substring(0, Math.min(intLength, 15)) + (newDecimal ? '.' + newDecimal : '');
-        } else {
-          clean = truncated;
-        }
-        num = parseFloat(clean) || 0;
-      }
+      // محدود کردن اعشار
+      const numStr = num.toFixed(curr.decimals);
+      const [intPart, decPart] = numStr.split('.');
       
       let formatted;
+      
       if (currentLang === 'fa') {
-        const numParts = num.toFixed(curr.decimals).split('.');
-        const intPart = numParts[0];
-        const decPart = numParts[1] || '';
-        
+        // فرمت فارسی با ویرگول
         let result = '';
         let counter = 0;
         for (let i = intPart.length - 1; i >= 0; i--) {
@@ -2210,13 +2154,15 @@
           }
         }
         
+        // تبدیل به فارسی
         const pDigits = '۰۱۲۳۴۵۶۷۸۹';
         result = result.split('').map(char => {
           if (char >= '0' && char <= '9') return pDigits[parseInt(char)];
           return char;
         }).join('');
         
-        if (decPart && curr.decimals > 0) {
+        // اضافه کردن اعشار فقط اگر لازم باشد
+        if (decPart && curr.decimals > 0 && parseInt(decPart) > 0) {
           const pDec = decPart.split('').map(char => 
             char >= '0' && char <= '9' ? pDigits[parseInt(char)] : char
           ).join('');
@@ -2225,16 +2171,16 @@
           formatted = result;
         }
       } else {
+        // فرمت انگلیسی
         formatted = num.toLocaleString('en-US', {
-          minimumFractionDigits: curr.decimals,
+          minimumFractionDigits: 0,
           maximumFractionDigits: curr.decimals
         });
       }
       
+      // تنظیم مقدار
       if (input.value !== formatted) {
-        const newLen = formatted.length;
         input.value = formatted;
-        input.setSelectionRange(newLen, newLen);
       }
     }
 
@@ -2320,8 +2266,7 @@
       alert('لینک بازیابی به ایمیل شما ارسال شد (نسخه دمو)');
       showLogin();
     }
-
-    // ==================== USER MANAGEMENT ====================
+	    // ==================== USER MANAGEMENT ====================
     async function renderUserList() {
       const users = await dbGetAll('users');
       const container = document.getElementById('user-list');
@@ -2441,8 +2386,27 @@
       renderAll();
     }
 
+    function setCurrency(curr) {
+      currentCurrency = curr;
+      localStorage.setItem('crm_currency', curr);
+      
+      document.querySelectorAll('.currency-option').forEach(el => el.classList.remove('active'));
+      const currEl = document.querySelector(`.currency-option[onclick="setCurrency('${curr}')"]`);
+      if (currEl) currEl.classList.add('active');
+      
+      const currData = CURRENCIES[curr];
+      if (currData) {
+        const displayName = currentLang === 'fa' ? currData.faName : currData.enName;
+        const currDisplay = document.getElementById('current-currency');
+        if (currDisplay) {
+          currDisplay.textContent = displayName;
+        }
+      }
+      
+      renderAll();
+    }
+
     function applyLang() {
-      // Language translations
       const dict = {
         fa: {
           app_title: 'بهترین نرم افزار مالی و CRM',
@@ -2616,26 +2580,20 @@
       
       const t = dict[currentLang];
       
-      // Update all elements with data-key
       document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (t[key]) el.textContent = t[key];
       });
       
-      // Update placeholders
       document.querySelectorAll('[data-key-placeholder]').forEach(el => {
         const key = el.getAttribute('data-key-placeholder');
         if (t[key]) el.placeholder = t[key];
       });
       
-      // Update app title
       document.getElementById('app-title').textContent = t.app_title;
-      
-      // Update document direction
       document.documentElement.dir = currentLang === 'fa' ? 'rtl' : 'ltr';
     }
-
-    // ==================== CUSTOMERS ====================
+	    // ==================== CUSTOMERS ====================
     async function addCustomer() {
       const name = prompt(currentLang === 'fa' ? 'نام مشتری:' : 'Customer name:');
       if (!name) return;
@@ -2701,7 +2659,6 @@
       document.getElementById('edit-phone').value = c.phone || '';
       document.getElementById('edit-email').value = c.email || '';
       document.getElementById('edit-address').value = c.address || '';
-      document.getElementById('edit-note').value = c.note || '';
       
       document.getElementById('edit-modal').style.display = 'flex';
     }
@@ -2715,7 +2672,6 @@
       c.phone = document.getElementById('edit-phone').value;
       c.email = document.getElementById('edit-email').value;
       c.address = document.getElementById('edit-address').value;
-      c.note = document.getElementById('edit-note').value;
       
       await dbSave('customers', c);
       closeEditModal();
@@ -2866,14 +2822,12 @@
       await dbSave('operations', op);
       renderOperations();
     }
-
-    // ==================== PAYMENTS & STAGES ====================
+	    // ==================== PAYMENTS & STAGES ====================
     async function addPayment() {
       if (!currentCustomerId) return;
       
       const payType = document.getElementById('pay-type').value;
       const amount = parseNumber(document.getElementById('pay-amount').value);
-      const stageId = document.getElementById('pay-for-stage').value;
       
       if (amount <= 0) {
         alert(currentLang === 'fa' ? 'مبلغ نامعتبر' : 'Invalid amount');
@@ -2907,7 +2861,6 @@
         type: 'دریافتی',
         payType,
         amount: amount,
-        stageId: stageId || null,
         note: 'پرداخت از پروفایل'
       };
       
@@ -2926,7 +2879,6 @@
       
       const title = document.getElementById('stage-title').value.trim();
       const amount = parseNumber(document.getElementById('stage-amount').value);
-      const desc = document.getElementById('stage-desc').value.trim();
       
       if (!title) {
         alert(currentLang === 'fa' ? 'عنوان مرحله را وارد کنید' : 'Enter stage title');
@@ -2937,7 +2889,6 @@
         customerId: currentCustomerId,
         title,
         amount,
-        desc,
         status: 'pending',
         datetime: new Date().toISOString()
       };
@@ -2948,10 +2899,8 @@
       
       document.getElementById('stage-title').value = '';
       document.getElementById('stage-amount').value = '';
-      document.getElementById('stage-desc').value = '';
       
       renderStagesList(currentCustomerId);
-      updateStageSelector(currentCustomerId);
       addActivity(currentLang === 'fa' ? 'مرحله کاری جدید ثبت شد' : 'New stage added');
     }
 
@@ -2962,7 +2911,6 @@
       stages = stages.filter(s => s.id !== id);
       
       renderStagesList(currentCustomerId);
-      updateStageSelector(currentCustomerId);
     }
 
     async function toggleStageStatus(id) {
@@ -2986,7 +2934,6 @@
             <div class="stage-meta">
               ${formatDateTime(new Date(s.datetime))}
               ${s.amount > 0 ? '| ' + formatNumber(s.amount) : ''}
-              ${s.desc ? '| ' + s.desc : ''}
             </div>
           </div>
           <div style="display:flex; gap:6px;">
@@ -2999,14 +2946,6 @@
           </div>
         </div>
       `).join('');
-    }
-
-    function updateStageSelector(custId) {
-      const sel = document.getElementById('pay-for-stage');
-      const custStages = stages.filter(s => s.customerId === custId && s.status !== 'done');
-      
-      sel.innerHTML = '<option value="">-- ' + (currentLang === 'fa' ? 'انتخاب مرحله' : 'Select stage') + ' --</option>' +
-        custStages.map(s => `<option value="${s.id}">${s.title} ${s.amount > 0 ? '(' + formatNumber(s.amount, false) + ')' : ''}</option>`).join('');
     }
 
     // ==================== MODALS ====================
@@ -3064,7 +3003,6 @@
       `).join('');
       
       renderStagesList(id);
-      updateStageSelector(id);
       
       document.getElementById('customer-modal').style.display = 'flex';
     }
@@ -3097,7 +3035,6 @@
               <div class="stage-meta">
                 ${formatDateTime(new Date(s.datetime))}
                 ${s.amount > 0 ? '| ' + formatNumber(s.amount) : ''}
-                ${s.desc ? '| ' + s.desc : ''}
               </div>
             </div>
             <div style="display:flex; gap:6px; align-items:center;">
@@ -3275,8 +3212,7 @@
     function printProfile() {
       window.print();
     }
-
-    // ==================== RENDERERS ====================
+	    // ==================== RENDERERS ====================
     function renderAll() {
       renderCustomers();
       renderOperations();
@@ -3353,7 +3289,6 @@
       const tbody = document.querySelector('#finance-table tbody');
       if (!tbody) return;
       
-      // Group by customer
       const customerTotals = {};
       customers.forEach(c => {
         const custOps = operations.filter(o => o.customerId === c.id);
@@ -3421,13 +3356,12 @@
       
       document.getElementById('stat-debt').textContent = formatNumber(totalDebt, false);
       
-      // Compact debtors list
       const debtorsContainer = document.getElementById('dashboard-debtors-list');
       const debtors = customers.map(c => {
         const custOps = operations.filter(o => o.customerId === c.id);
         const remaining = custOps.reduce((s, o) => s + o.remaining, 0);
         return { c, remaining };
-      }).filter(x => x.remaining > 0).sort((a, b) => b.remaining - a.remaining).slice(0, 5); // Show only top 5
+      }).filter(x => x.remaining > 0).sort((a, b) => b.remaining - a.remaining).slice(0, 5);
       
       if (debtors.length === 0) {
         debtorsContainer.innerHTML = '<div style="text-align:center; color:var(--text-muted); padding:20px;">' + (currentLang === 'fa' ? 'بدون بدهکار' : 'No debtors') + '</div>';
@@ -3457,18 +3391,123 @@
       }
     }
 
-    function setCurrency(curr) {
-      currentCurrency = curr;
-      localStorage.setItem('crm_currency', curr);
+    // ==================== ACTIVATION SYSTEM ====================
+    function checkActivation() {
+      const opCount = operations.length;
+      const isActive = isLicenseValid();
       
-      document.querySelectorAll('.currency-option').forEach(el => el.classList.remove('active'));
-      const currEl = document.querySelector(`.currency-option[onclick="setCurrency('${curr}')"]`);
-      if (currEl) currEl.classList.add('active');
+      updateActivationUI(isActive, opCount);
       
-      const names = { IRR: currentLang === 'fa' ? 'تومان' : 'Toman', USD: 'USD', EUR: 'EUR', GBP: 'GBP', BTC: 'BTC' };
-      document.getElementById('current-currency').textContent = names[curr] || curr;
+      if (opCount >= TRIAL_LIMIT && !isActive) {
+        showActivationModal();
+        return false;
+      }
+      return true;
+    }
+
+    function isLicenseValid() {
+      if (!licenseData) return false;
+      if (licenseData.expireDate) {
+        return new Date() < new Date(licenseData.expireDate);
+      }
+      return false;
+    }
+
+    function updateActivationUI(isActive, opCount) {
+      const box = document.getElementById('activation-box');
+      const statusText = document.getElementById('activation-status-text');
+      const licenseInfo = document.getElementById('license-info');
       
-      renderAll();
+      if (isActive && licenseData) {
+        box.classList.add('active');
+        statusText.className = 'activation-status active';
+        statusText.innerHTML = '<span>🔓</span><span>' + (currentLang === 'fa' ? 'نرم‌افزار فعال است' : 'Software Active') + '</span>';
+        licenseInfo.style.display = 'block';
+        
+        document.getElementById('license-type').textContent = licenseData.name || licenseData.type;
+        document.getElementById('license-expire').textContent = new Date(licenseData.expireDate).toLocaleDateString('fa-IR');
+      } else {
+        box.classList.remove('active');
+        statusText.className = 'activation-status inactive';
+        statusText.innerHTML = '<span>🔒</span><span>' + (currentLang === 'fa' ? 'نرم‌افزار غیرفعال' : 'Software Inactive') + '</span>';
+        licenseInfo.style.display = 'none';
+        
+        if (opCount >= TRIAL_LIMIT) {
+          alert(currentLang === 'fa' ? '⚠️ پایان نسخه آزمایشی! لطفاً نرم‌افزار را فعال کنید.' : '⚠️ Trial ended! Please activate.');
+          showActivationModal();
+        }
+      }
+    }
+
+    function showActivationModal() {
+      document.getElementById('activation-modal').style.display = 'flex';
+    }
+
+    function closeActivationModal() {
+      document.getElementById('activation-modal').style.display = 'none';
+    }
+
+    function activateWithCode() {
+      const code = document.getElementById('activation-code').value.trim().toUpperCase();
+      
+      if (!code) {
+        alert(currentLang === 'fa' ? 'لطفاً کد فعال‌سازی را وارد کنید' : 'Please enter activation code');
+        return;
+      }
+      
+      const licenseInfo = LICENSE_CODES[code];
+      
+      if (licenseInfo) {
+        const expireDate = new Date();
+        expireDate.setDate(expireDate.getDate() + licenseInfo.days);
+        
+        licenseData = {
+          code: code,
+          type: licenseInfo.type,
+          name: licenseInfo.name,
+          expireDate: expireDate.toISOString(),
+          activatedAt: new Date().toISOString()
+        };
+        
+        localStorage.setItem('crm_license', JSON.stringify(licenseData));
+        updateActivationUI(true, operations.length);
+        closeActivationModal();
+        alert(currentLang === 'fa' ? '✅ نرم‌افزار با موفقیت فعال شد!' : '✅ Software activated successfully!');
+        addActivity(currentLang === 'fa' ? 'نرم‌افزار فعال شد - ' + licenseInfo.name : 'Software activated - ' + licenseInfo.name);
+      } else {
+        alert(currentLang === 'fa' ? '❌ کد فعال‌سازی نامعتبر است!' : '❌ Invalid activation code!');
+      }
+    }
+
+    // ==================== BUSINESS INFO ====================
+    function updateBusinessDisplay() {
+      const display = document.getElementById('business-display');
+      const nameEl = document.getElementById('display-biz-name');
+      const phoneEl = document.getElementById('display-biz-phone');
+      
+      if (businessInfo.name || businessInfo.phone) {
+        display.style.display = 'flex';
+        nameEl.textContent = businessInfo.name || '-';
+        phoneEl.textContent = businessInfo.phone || '-';
+      } else {
+        display.style.display = 'none';
+      }
+      
+      document.getElementById('settings-biz-name').value = businessInfo.name || '';
+      document.getElementById('settings-biz-phone').value = businessInfo.phone || '';
+      document.getElementById('settings-biz-address').value = businessInfo.address || '';
+    }
+
+    function saveBusinessInfo() {
+      businessInfo = {
+        name: document.getElementById('settings-biz-name').value.trim(),
+        phone: document.getElementById('settings-biz-phone').value.trim(),
+        address: document.getElementById('settings-biz-address').value.trim()
+      };
+      localStorage.setItem('crm_business_info', JSON.stringify(businessInfo));
+      updateBusinessDisplay();
+      addActivity(currentLang === 'fa' ? 'اطلاعات کسب‌وکار بروزرسانی شد' : 'Business info updated');
+      alert(currentLang === 'fa' ? '✅ اطلاعات ذخیره شد' : '✅ Saved');
     }
 
     // ==================== DATABASE CONNECTION ====================
@@ -3478,8 +3517,7 @@
         port: document.getElementById('db-port').value,
         database: document.getElementById('db-name').value,
         username: document.getElementById('db-user').value,
-        password: document.getElementById('db-pass').value,
-        apiEndpoint: document.getElementById('db-api').value
+        password: document.getElementById('db-pass').value
       };
       
       localStorage.setItem('db_host', config.host);
@@ -3487,7 +3525,6 @@
       localStorage.setItem('db_name', config.database);
       localStorage.setItem('db_user', config.username);
       localStorage.setItem('db_pass', config.password);
-      localStorage.setItem('db_api', config.apiEndpoint);
       
       alert(currentLang === 'fa' ? 'تنظیمات ذخیره شد' : 'Settings saved');
     }
@@ -3672,5 +3709,4 @@
     };
   </script>
 </body>
-
 </html>
